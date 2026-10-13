@@ -12,9 +12,10 @@
 h1{font-size:29px;line-height:1.12;margin:0 0 10px}.intro{color:var(--muted);line-height:1.5;margin:0 0 24px}
 .q{display:block;font-weight:650;margin:25px 0 11px}.stars{display:flex;gap:7px;flex-direction:row-reverse;justify-content:flex-end}.stars input{display:none}.stars label{font-size:39px;color:#d6d6d6;cursor:pointer}.stars label:hover,.stars label:hover~label,.stars input:checked~label{color:#171717}
 .options{display:grid;gap:8px}.option{border:1px solid var(--line);border-radius:11px;padding:12px 13px;cursor:pointer;display:flex;gap:10px;align-items:center}.option:has(input:checked){border-color:#171717;background:#fafafa}.option input{accent-color:#171717}
-select,textarea,input[type=text],input[type=email]{width:100%;border:1px solid var(--line);border-radius:11px;padding:12px;font:inherit;background:#fff}select{margin-left:auto;width:170px}textarea{min-height:100px;resize:vertical}
+select,textarea,input[type=text],input[type=email],input[type=number]{width:100%;border:1px solid var(--line);border-radius:11px;padding:12px;font:inherit;background:#fff}select{margin-left:auto;width:170px}textarea{min-height:100px;resize:vertical}
 .check{display:flex;gap:9px;margin-top:16px;color:#4d4d4d;line-height:1.45;font-size:13px}.check input{margin-top:3px;accent-color:#171717}
 button{width:100%;margin-top:23px;border:0;border-radius:11px;padding:15px;background:#171717;color:white;font-size:16px;font-weight:650;cursor:pointer}.small{font-size:12px;color:#888;text-align:center;margin-top:13px}
+.vehicle-fields{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:12px}.vehicle-fields label{display:block;font-weight:650;font-size:14px}.vehicle-fields input{display:block;margin-top:8px}.vehicle-title{margin:24px 0 8px;font-size:18px}@media(max-width:520px){.vehicle-fields{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -25,6 +26,11 @@ button{width:100%;margin-top:23px;border:0;border-radius:11px;padding:15px;backg
 
 <form id="feedbackForm">
 <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+<h2 class="vehicle-title">Datos del vehículo</h2>
+<div class="vehicle-fields">
+  <label for="marcaModelo">Marca y modelo<input id="marcaModelo" type="text" name="Marca y modelo" maxlength="150" placeholder="Ej. SEAT León" required></label>
+  <label for="anio">Año<input id="anio" type="number" name="Año" min="1900" max="2100" step="1" placeholder="Ej. 2019" required></label>
+</div>
 
 <label class="q">1. ¿Cómo valorarías el servicio recibido?</label>
 <div class="stars">
@@ -130,6 +136,8 @@ button{width:100%;margin-top:23px;border:0;border-radius:11px;padding:15px;backg
       status.textContent = 'Falta configurar Supabase en config.js.'; return;
     }
     const data = {
+      marca_modelo: val(fd, 'Marca y modelo'),
+      anio: Number(val(fd, 'Año')),
       estrellas: stars,
       profesionalidad: val(fd, 'Profesionalidad'),
       comunicacion: val(fd, 'Comunicación'),
