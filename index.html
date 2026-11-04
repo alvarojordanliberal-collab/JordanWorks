@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f7f8">
+  <meta name="description" content="Jordan Works gestiona la venta de tu coche de segunda mano con un proceso cuidado, transparente y profesional. Solicita una valoración inicial gratuita y sin compromiso.">
+  <title>Jordan Works | Gestión profesional de venta de vehículos</title>
+  <style>
+    :root{
+      --bg:#f4f7f8;--paper:#fff;--ink:#17232d;--muted:#5d6d79;--teal:#007b80;
+      --teal-dark:#00676c;--mint:#e5f1ef;--line:#dfe7eb;--gold:#df9817;
+      --shadow:0 16px 42px rgba(24,43,54,.07);--radius:22px;--max:1160px
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:90px}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    button,a{-webkit-tap-highlight-color:transparent}
+    .wrap{width:min(var(--max),calc(100% - 44px));margin-inline:auto}
+    .topline{height:4px;background:linear-gradient(90deg,var(--teal) 0%,#54aaa4 58%,#e2a23a 100%)}
+    header{position:sticky;top:0;z-index:10;background:rgba(244,247,248,.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(215,225,230,.8)}
+    .nav{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
+    .monogram{width:43px;height:43px;border:1.5px solid var(--teal);border-radius:13px;display:grid;place-items:center;color:var(--teal);font-size:1rem;font-weight:900;letter-spacing:-.1em;padding-right:3px;background:#fff}
+    .brand-name{display:block;font-size:1.02rem;line-height:1.05;font-weight:900;letter-spacing:.12em}
+    .brand-tag{display:block;margin-top:5px;color:var(--muted);font-size:.61rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
+    .navlinks{display:flex;align-items:center;gap:30px;font-size:.88rem;font-weight:700;color:#42525e}
+    .navlinks a:not(.nav-cta):hover{color:var(--teal)}
+    .nav-cta,.btn{display:inline-flex;justify-content:center;align-items:center;gap:10px;border-radius:12px;padding:13px 19px;font-weight:800;font-size:.9rem;transition:transform .18s,background .18s,border-color .18s}
+    .nav-cta,.btn-primary{background:var(--teal);color:#fff;border:1px solid var(--teal);box-shadow:0 6px 16px rgba(0,123,128,.13)}
+    .nav-cta:hover,.btn-primary:hover{background:var(--teal-dark);border-color:var(--teal-dark);transform:translateY(-1px)}
+    .btn-secondary{color:var(--ink);border:1px solid #d5e0e5;background:#fff}
+    .btn-secondary:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-1px)}
+    .mobile-toggle{display:none;border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px;color:var(--ink);font:inherit;font-weight:800}
+
+    .hero{padding:58px 0 56px}
+    .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:54px}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--teal);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;font-weight:900}
+    .eyebrow:before{content:"";height:2px;width:26px;border-radius:3px;background:var(--teal)}
+    h1{font-size:clamp(2.7rem,5vw,4.6rem);line-height:1.02;letter-spacing:-.065em;margin:19px 0 20px;font-weight:900;max-width:650px}
+    h1 em{color:var(--teal);font-style:normal}
+    .hero-copy>p{font-size:1.08rem;line-height:1.8;color:var(--muted);max-width:550px;margin:0}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:29px}
+    .trustline{display:flex;align-items:center;flex-wrap:wrap;gap:10px 18px;margin-top:25px;color:#5d6d79;font-size:.82rem;font-weight:650}
+    .trustline span{display:inline-flex;align-items:center;gap:7px}
+    .check{color:var(--teal);font-weight:1000;font-size:1rem}
+    .hero-art{position:relative;min-height:480px;border-radius:28px;overflow:hidden;isolation:isolate;background:linear-gradient(145deg,#cad7d8 0%,#899da1 48%,#263b43 100%);box-shadow:var(--shadow)}
+    .hero-art:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(18,35,44,.04),rgba(18,35,44,.52)),url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1500&q=85') center 52%/cover no-repeat;transform:scale(1.01)}
+    .art-label{position:absolute;left:24px;top:24px;background:rgba(255,255,255,.93);color:var(--ink);border:1px solid rgba(255,255,255,.6);border-radius:100px;padding:9px 13px;font-size:.73rem;font-weight:850;letter-spacing:.03em}
+    .art-bottom{position:absolute;left:25px;right:25px;bottom:25px;display:flex;justify-content:space-between;align-items:end;gap:14px;color:#fff}
+    .art-bottom small{display:block;text-transform:uppercase;font-size:.68rem;letter-spacing:.16em;font-weight:850;opacity:.82}
+    .art-bottom strong{display:block;font-size:1.45rem;letter-spacing:-.04em;margin-top:5px}
+    .art-stamp{width:62px;height:62px;display:grid;place-items:center;flex-shrink:0;border:1px solid rgba(255,255,255,.72);border-radius:50%;font-size:1.45rem;background:rgba(15,35,43,.24);backdrop-filter:blur(7px)}
+    .floating-card{position:absolute;left:-24px;bottom:82px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 19px;box-shadow:var(--shadow);max-width:220px}
+    .floating-stars{color:var(--gold);letter-spacing:2px;font-size:.95rem}
+    .floating-card strong{display:block;font-size:1rem;margin-top:4px}
+    .floating-card small{display:block;color:var(--muted);font-size:.75rem;margin-top:2px}
+
+    .proof-band{padding:0 0 63px}
+    .proof-grid{display:grid;grid-template-columns:repeat(3,1fr);background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 24px rgba(20,42,54,.025);overflow:hidden}
+    .proof-item{padding:24px 28px;display:flex;align-items:center;gap:15px}
+    .proof-item+.proof-item{border-left:1px solid var(--line)}
+    .proof-icon{width:45px;height:45px;flex-shrink:0;display:grid;place-items:center;background:var(--mint);border-radius:13px;color:var(--teal);font-size:1.2rem;font-weight:900}
+    .proof-item strong{display:block;font-size:.95rem}
+    .proof-item small{display:block;margin-top:3px;color:var(--muted);font-size:.79rem}
+
+    section.content-section{padding:73px 0}
+    .section-head{max-width:700px;margin-bottom:33px}
+    .section-head h2{font-size:clamp(2rem,3.3vw,3rem);line-height:1.1;letter-spacing:-.055em;margin:13px 0 12px;font-weight:900}
+    .section-head p{color:var(--muted);font-size:1rem;max-width:630px;margin:0}
+    .service-section{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .service-card{border:1px solid var(--line);border-radius:18px;padding:26px;background:linear-gradient(180deg,#fff 0%,#fbfcfc 100%);min-height:218px}
+    .service-num{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:var(--mint);color:var(--teal);font-size:.8rem;font-weight:900;letter-spacing:.05em}
+    .service-card h3{margin:20px 0 8px;font-size:1.12rem;letter-spacing:-.025em}
+    .service-card p{margin:0;color:var(--muted);font-size:.9rem;line-height:1.7}
+    .steps-grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:66px;align-items:start}
+    .steps-aside{position:sticky;top:112px}
+    .steps-aside .section-head{margin-bottom:22px}
+    .steps-list{display:grid;gap:0}
+    .step{display:grid;grid-template-columns:49px 1fr;gap:18px;padding:19px 0;border-bottom:1px solid var(--line)}
+    .step:last-child{border-bottom:0}
+    .step-number{width:42px;height:42px;display:grid;place-items:center;border-radius:50%;background:#fff;border:1px solid #d5e3e5;color:var(--teal);font-weight:900;font-size:.83rem}
+    .step h3{font-size:1.02rem;margin:2px 0 6px;letter-spacing:-.02em}
+    .step p{font-size:.9rem;color:var(--muted);margin:0;line-height:1.7}
+    .side-note{background:var(--mint);border-radius:16px;padding:18px 20px;color:#37545a;font-size:.86rem;line-height:1.65}
+
+    .testimonial-section{background:#eaf0f1;border-block:1px solid #dfe7e9}
+    .testimonials-top{display:flex;justify-content:space-between;align-items:end;gap:24px}
+    .testimonials-top .section-head{margin-bottom:28px}
+    .review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+    .review-card{background:#fff;border:1px solid #dce5e8;border-radius:18px;padding:25px;display:flex;flex-direction:column;min-height:240px}
+    .stars{color:var(--gold);font-size:1rem;letter-spacing:2px;margin-bottom:15px}
+    .review-card blockquote{padding:0;margin:0 0 24px;color:#263743;font-size:.94rem;line-height:1.75;flex:1}
+    .review-meta{padding-top:14px;border-top:1px solid #e8edef;display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .review-meta strong{font-size:.84rem}
+    .review-meta span{color:var(--teal);font-size:.72rem;font-weight:850;text-transform:uppercase;letter-spacing:.03em}
+    .review-foot{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-top:23px}
+    .review-foot p{margin:0;color:var(--muted);font-size:.86rem}
+
+    .cta-section{padding:70px 0}
+    .cta-panel{position:relative;overflow:hidden;background:#172a32;color:#fff;border-radius:26px;padding:clamp(30px,5vw,58px);display:flex;justify-content:space-between;align-items:center;gap:30px;isolation:isolate}
+    .cta-panel:after{content:"JW";position:absolute;z-index:-1;right:28px;top:-52px;font-size:clamp(9rem,22vw,18rem);line-height:1;font-weight:950;letter-spacing:-.12em;color:rgba(255,255,255,.035)}
+    .cta-copy{max-width:640px}
+    .cta-copy .eyebrow{color:#8fd3cc}
+    .cta-copy .eyebrow:before{background:#8fd3cc}
+    .cta-copy h2{font-size:clamp(2rem,3.8vw,3.2rem);letter-spacing:-.055em;line-height:1.08;margin:15px 0 13px}
+    .cta-copy p{margin:0;color:#c8d5da;max-width:570px}
+    .cta-panel .btn{flex-shrink:0;white-space:nowrap}
+    .cta-panel .btn-primary{background:#fff;color:#172a32;border-color:#fff;box-shadow:none}
+    .cta-panel .btn-primary:hover{background:#e5f1ef;border-color:#e5f1ef}
+
+    footer{background:#fff;border-top:1px solid var(--line);padding:31px 0 28px}
+    .footer-top{display:flex;justify-content:space-between;align-items:center;gap:24px}
+    .footer-copy{color:var(--muted);font-size:.8rem;margin-top:13px}
+    .footer-links{display:flex;flex-wrap:wrap;gap:20px;font-size:.82rem;color:#52636e;font-weight:700}
+    .footer-links a:hover{color:var(--teal)}
+    .copyright{margin-top:24px;padding-top:18px;border-top:1px solid #edf0f2;color:#82909a;font-size:.74rem;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+    @media(max-width:920px){.navlinks{gap:16px}.navlinks a:not(.nav-cta){display:none}.hero-grid{gap:32px}.hero-art{min-height:400px}.floating-card{left:13px;bottom:18px}.proof-item{padding:20px 17px}.steps-grid{gap:35px}.service-card{padding:22px}.review-card{padding:21px}}
+    @media(max-width:680px){.wrap{width:min(var(--max),calc(100% - 30px))}.nav{min-height:72px}.brand-name{font-size:.9rem}.brand-tag{font-size:.55rem}.monogram{width:39px;height:39px}.navlinks{gap:8px}.nav-cta{padding:11px 12px;font-size:.78rem}.hero{padding:38px 0 39px}.hero-grid{grid-template-columns:1fr;gap:31px}h1{font-size:clamp(2.7rem,12vw,4rem);margin-top:16px}.hero-copy>p{font-size:1rem}.hero-art{min-height:350px;border-radius:21px}.proof-band{padding-bottom:34px}.proof-grid{grid-template-columns:1fr}.proof-item{padding:15px 18px}.proof-item+.proof-item{border-left:0;border-top:1px solid var(--line)}section.content-section{padding:53px 0}.service-grid{grid-template-columns:1fr;gap:12px}.service-card{min-height:0;padding:21px}.service-card h3{margin-top:15px}.steps-grid{grid-template-columns:1fr;gap:26px}.steps-aside{position:static}.section-head{margin-bottom:25px}.testimonials-top{display:block}.review-grid{grid-template-columns:1fr}.review-card{min-height:0}.review-foot{align-items:flex-start;flex-direction:column}.cta-section{padding:46px 0}.cta-panel{padding:29px 23px;display:block;border-radius:21px}.cta-panel .btn{margin-top:22px;width:100%}.footer-top{display:block}.footer-links{margin-top:23px;gap:14px 18px}.copyright{display:block}.copyright span{display:block;margin-top:6px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+  </style>
+</head>
+<body>
+  <div class="topline" aria-hidden="true"></div>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="./index.html" aria-label="Jordan Works, inicio">
+        <span class="monogram" aria-hidden="true">JW</span>
+        <span><span class="brand-name">JORDAN WORKS</span><span class="brand-tag">Gestión de venta de vehículos</span></span>
+      </a>
+      <nav class="navlinks" aria-label="Navegación principal">
+        <a href="#servicio">El servicio</a>
+        <a href="#proceso">Cómo funciona</a>
+        <a href="/JordanWorks/valoraciones-coches-final/index.html">Opiniones</a>
+        <a class="nav-cta" href="/JordanWorks/valoracion-gratuita/cuestionario.html">Valora tu coche <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Gestión profesional de venta</div>
+          <h1>Vender tu coche bien.<br><em>Sin complicarte.</em></h1>
+          <p>Gestionamos la venta de tu vehículo de forma cuidada y transparente: desde la valoración inicial hasta la gestión de los interesados y el cierre de la operación.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="/JordanWorks/valoracion-gratuita/cuestionario.html">Solicitar valoración gratuita <span aria-hidden="true">→</span></a>
+            <a class="btn btn-secondary" href="#proceso">Descubrir el proceso <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="trustline">
+            <span><b class="check">✓</b> Valoración inicial gratuita</span>
+            <span><b class="check">✓</b> Sin compromiso</span>
+            <span><b class="check">✓</b> Trato personalizado</span>
+          </div>
+        </div>
+        <div class="hero-art" role="img" aria-label="Fotografía de un vehículo deportivo en un entorno urbano">
+          <span class="art-label">JORDAN WORKS · VEHÍCULOS</span>
+          <div class="floating-card">
+            <div class="floating-stars" aria-label="Cinco estrellas">★★★★★</div>
+            <strong>La confianza, primero.</strong>
+            <small>Opiniones de propietarios</small>
+          </div>
+          <div class="art-bottom">
+            <div><small>Una venta acompañada</small><strong>Tu coche. Tu decisión.</strong></div>
+            <div class="art-stamp" aria-hidden="true">JW</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="proof-band" aria-label="Principios del servicio">
+      <div class="wrap proof-grid">
+        <div class="proof-item"><div class="proof-icon" aria-hidden="true">◎</div><div><strong>Valoración con criterio</strong><small>Una referencia orientativa según tu coche y el mercado.</small></div></div>
+        <div class="proof-item"><div class="proof-icon" aria-hidden="true">↗</div><div><strong>Presentación cuidada</strong><small>Información clara y una presentación pensada para compradores.</small></div></div>
+        <div class="proof-item"><div class="proof-icon" aria-hidden="true">✓</div><div><strong>Gestión de principio a fin</strong><small>Seguimiento y acompañamiento durante el proceso acordado.</small></div></div>
+      </div>
+    </section>
+
+    <section class="content-section service-section" id="servicio">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">El servicio</div>
+          <h2>Tu coche merece una venta a la altura.</h2>
+          <p>Vender entre particulares puede llevar tiempo y exige atender mensajes, filtrar interesados y coordinar visitas. Jordan Works se encarga de ayudarte a organizar ese proceso con un trato profesional y directo.</p>
+        </div>
+        <div class="service-grid">
+          <article class="service-card"><div class="service-num">01</div><h3>Estudio del vehículo</h3><p>Revisamos modelo, kilometraje, equipamiento, mantenimiento, estado y referencias de mercado para preparar una valoración inicial razonada.</p></article>
+          <article class="service-card"><div class="service-num">02</div><h3>Presentación y difusión</h3><p>Preparamos la información del anuncio y una presentación clara del vehículo, destacando sus puntos fuertes sin ocultar los detalles relevantes.</p></article>
+          <article class="service-card"><div class="service-num">03</div><h3>Interesados y cierre</h3><p>Gestionamos consultas y coordinamos los siguientes pasos con las personas interesadas, acompañando la negociación y la documentación acordada.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="proceso">
+      <div class="wrap steps-grid">
+        <div class="steps-aside">
+          <div class="section-head">
+            <div class="eyebrow">Un proceso claro</div>
+            <h2>Así empieza todo.</h2>
+            <p>Cuéntanos qué coche tienes. Estudiaremos la información y te explicaremos las opciones con claridad, antes de que tomes ninguna decisión.</p>
+          </div>
+          <a class="btn btn-primary" href="/JordanWorks/valoracion-gratuita/cuestionario.html">Pedir valoración gratuita <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="steps-list">
+          <article class="step"><div class="step-number">01</div><div><h3>Nos envías los datos del coche</h3><p>Completa el formulario con marca, modelo, año, kilometraje y la información que conozcas. Puedes añadir detalles que nos ayuden a entender su estado.</p></div></article>
+          <article class="step"><div class="step-number">02</div><div><h3>Estudiamos su valor orientativo</h3><p>Analizamos la información facilitada y las referencias de mercado disponibles. La valoración inicial es gratuita y no te obliga a contratar el servicio.</p></div></article>
+          <article class="step"><div class="step-number">03</div><div><h3>Hablamos de tu objetivo</h3><p>Si encaja con lo que buscas, concretamos contigo el alcance de la gestión, los siguientes pasos y las condiciones antes de empezar.</p></div></article>
+          <article class="step"><div class="step-number">04</div><div><h3>Gestionamos la venta contigo</h3><p>Una vez acordado el servicio, coordinamos las tareas previstas y te mantenemos al tanto de la evolución y de las decisiones importantes.</p></div></article>
+          <div class="side-note"><strong>Transparencia desde el principio.</strong> La valoración inicial no garantiza un precio de venta concreto. El valor final dependerá del vehículo, su estado, la demanda y las condiciones que se acuerden.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section testimonial-section" id="opiniones">
+      <div class="wrap">
+        <div class="testimonials-top">
+          <div class="section-head">
+            <div class="eyebrow">Experiencias reales</div>
+            <h2>La confianza se construye con hechos.</h2>
+            <p>Conoce la experiencia de propietarios que ya han confiado en Jordan Works para gestionar la venta de su vehículo.</p>
+          </div>
+          <a class="btn btn-secondary" href="/JordanWorks/valoraciones-coches-final/index.html">Leer todas las opiniones <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="review-grid">
+          <article class="review-card"><div class="stars" aria-label="Cinco estrellas">★★★★★</div><blockquote>“Un servicio inmaculado llevado por un profesional. Está claro que la venta de un coche de este rango tiene que ser efectuada con una persona seria y atenta.”</blockquote><div class="review-meta"><strong>José Manuel Goñi</strong><span>Audi Q5 · 2023</span></div></article>
+          <article class="review-card"><div class="stars" aria-label="Cinco estrellas">★★★★★</div><blockquote>“Álvaro, tipo serio y profesional.”</blockquote><div class="review-meta"><strong>Manolo</strong><span>Kia Sportage · 2021</span></div></article>
+          <article class="review-card"><div class="stars" aria-label="Cinco estrellas">★★★★★</div><blockquote>“Es un servicio que te quita preocupaciones y creo que tienes más posibilidades de vender el vehículo ya que lo gestiona un profesional.”</blockquote><div class="review-meta"><strong>Irene</strong><span>Golf e-Power · 2017</span></div></article>
+        </div>
+        <div class="review-foot"><p>Consulta el tablón para leer las valoraciones completas publicadas.</p><a class="btn btn-secondary" href="/JordanWorks/valoraciones-coches-final/index.html">Ver tablón de opiniones →</a></div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="wrap">
+        <div class="cta-panel">
+          <div class="cta-copy"><div class="eyebrow">Primer paso, sin compromiso</div><h2>¿Estás pensando en cambiar de coche?</h2><p>Antes de anunciarlo, conoce una valoración orientativa y descubre cómo podemos ayudarte a gestionar la venta.</p></div>
+          <a class="btn btn-primary" href="/JordanWorks/valoracion-gratuita/cuestionario.html">Valorar mi coche gratis <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-top">
+        <div><a class="brand" href="./index.html"><span class="monogram" aria-hidden="true">JW</span><span><span class="brand-name">JORDAN WORKS</span><span class="brand-tag">Gestión de venta de vehículos</span></span></a><div class="footer-copy">Un servicio profesional, cercano y transparente.</div></div>
+        <nav class="footer-links" aria-label="Enlaces de pie de página"><a href="#servicio">El servicio</a><a href="#proceso">Cómo funciona</a><a href="/JordanWorks/valoracion-gratuita/cuestionario.html">Valoración gratuita</a><a href="/JordanWorks/valoraciones-coches-final/index.html">Opiniones</a></nav>
+      </div>
+      <div class="copyright"><span>© <span id="year">2026</span> Jordan Works. Todos los derechos reservados.</span><span>La valoración inicial es orientativa y no garantiza un precio de venta concreto.</span></div>
+    </div>
+  </footer>
+</body>
+</html>
