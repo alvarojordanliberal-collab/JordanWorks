@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f7f8">
+  <meta name="description" content="Solicita una valoración gratuita de tu vehículo con Jordan Works.">
+  <title>Valoración gratuita de tu coche | Jordan Works</title>
+  <style>
+    :root{--bg:#f4f7f8;--panel:#fff;--field:#fff;--line:#e0e7eb;--text:#17232d;--muted:#647482;--teal:#007b80;--teal-dark:#006c72;--mint:#e4f1ef;--gold:#e09a16;--shadow:0 8px 24px rgba(20,42,54,.035)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.55}
+    .hero{max-width:900px;margin:0 auto;padding:42px 22px 24px;display:flex;align-items:center;justify-content:space-between;gap:28px}
+    .hero-copy{min-width:0;max-width:620px}
+    .eyebrow{color:var(--teal);font-size:.76rem;font-weight:850;letter-spacing:.16em;text-transform:uppercase}
+    h1{font-size:clamp(2rem,4.6vw,2.9rem);line-height:1.12;letter-spacing:-.045em;margin:18px 0 12px;font-weight:850;color:#17232d}
+    .hero p{font-size:.98rem;color:#526373;max-width:600px;margin:0}
+    .profile{flex:0 0 188px;min-width:188px;background:var(--mint);border-radius:18px;padding:20px 18px;text-align:center}
+    .profile strong{display:block;font-size:1.12rem;letter-spacing:-.03em}
+    .profile span{display:block;margin-top:3px;color:var(--teal);font-size:.64rem;font-weight:850;letter-spacing:.16em;text-transform:uppercase}
+    .benefits{display:flex;justify-content:flex-start;gap:8px 19px;flex-wrap:wrap;margin-top:17px;color:#526373;font-size:.84rem}
+    .benefits span:before{content:"✓";color:var(--teal);font-weight:900;margin-right:7px}
+    main{max-width:900px;margin:0 auto 48px;padding:0 22px}
+    form{display:grid;gap:16px}
+    .section{background:var(--panel);border:1px solid #dfe7ec;border-radius:18px;padding:clamp(22px,3.5vw,32px);box-shadow:var(--shadow);min-width:0}
+    .section-title{margin:0 0 23px;color:#182934;font-size:1.22rem;font-weight:850;letter-spacing:-.025em}
+    .section-title:before{content:"";display:inline-block;width:4px;height:19px;background:var(--teal);border-radius:4px;margin-right:10px;vertical-align:-3px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px 18px}
+    .field{min-width:0}
+    .full{grid-column:1/-1}
+    label,.label{display:block;font-size:.92rem;font-weight:700;margin:0 0 8px;color:#21313d}
+    .optional{font-weight:450;color:var(--muted);font-size:.83rem}
+    input,select,textarea{width:100%;min-height:49px;background:var(--field);color:var(--text);border:1px solid #dce4e9;border-radius:10px;padding:12px 14px;font:inherit;font-size:.94rem;outline:none;transition:border-color .15s,box-shadow .15s}
+    select{cursor:pointer}
+    input[type=file]{padding:10px 12px}
+    textarea{min-height:116px;resize:vertical}
+    input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,123,128,.1)}
+    input::placeholder,textarea::placeholder{color:#8a99a4}
+    .help{color:var(--muted);font-size:.83rem;margin:8px 0 0}
+    .choice-row{display:flex;gap:9px;flex-wrap:wrap}
+    .choice{position:relative;margin:0}
+    .choice input{position:absolute;opacity:0;width:1px;height:1px;min-height:1px}
+    .choice span{display:inline-flex;align-items:center;min-height:42px;padding:8px 14px;border:1px solid #dce4e9;border-radius:10px;background:#fff;color:#475965;font-size:.88rem;cursor:pointer;transition:all .15s}
+    .choice input:checked+span{border-color:var(--teal);color:var(--teal-dark);background:#eaf5f3;font-weight:750}
+    .choice input:focus-visible+span{outline:2px solid var(--teal);outline-offset:3px}
+    .form-footer{border-top:1px solid var(--line);margin-top:26px;padding-top:22px}
+    .checks{display:grid;gap:12px}
+    .checkline{display:flex;gap:10px;align-items:flex-start;color:#50616e;font-size:.85rem;line-height:1.5;font-weight:450}
+    .checkline input{width:17px;min-width:17px;min-height:17px;height:17px;margin:3px 0 0;accent-color:var(--teal)}
+    .submit{width:100%;border:0;border-radius:11px;background:var(--teal);color:#fff;font-size:.98rem;font-weight:800;padding:16px 22px;cursor:pointer;margin-top:20px;transition:background .15s,transform .15s}
+    .submit:hover{background:var(--teal-dark);transform:translateY(-1px)}
+    .fineprint{text-align:center;color:var(--muted);font-size:.78rem;margin:13px auto 0;max-width:620px}
+    footer{text-align:center;color:#71808c;padding:0 20px 32px;font-size:.8rem}
+    footer strong{color:#1f313c;letter-spacing:.13em}
+    @media(max-width:640px){.hero{padding-top:30px;align-items:flex-start;flex-direction:column;gap:18px}.profile{flex:initial;width:100%;min-width:0;text-align:left;padding:13px 16px;border-radius:13px}.profile strong,.profile span{display:inline-block}.profile span{margin-left:9px}.grid{grid-template-columns:1fr;gap:17px}.full{grid-column:auto}main{padding:0 14px}.hero{padding-left:18px;padding-right:18px}.section{border-radius:15px}.benefits{font-size:.82rem}}
+  </style>
+</head>
+<body>
+  <div style="max-width:900px;margin:18px auto 0;padding:0 22px"><a href="../index.html" style="color:#007b80;text-decoration:none;font-weight:750;font-size:.9rem">← Volver a Jordan Works</a></div>
+  <header class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow">Gestión profesional de venta de vehículos</div>
+      <h1>Solicita una valoración gratuita</h1>
+      <p>Cuéntanos qué vehículo tienes y prepararemos una valoración orientativa, sin compromiso y adaptada al mercado actual.</p>
+      <div class="benefits">
+        <span>Valoración gratuita</span>
+        <span>Sin compromiso</span>
+        <span>Respuesta en menos de 24 h laborables</span>
+      </div>
+    </div>
+    <div class="profile"><strong>Álvaro Jordán</strong><span>Gestor de ventas</span></div>
+  </header>
+
+  <main>
+    <form action="https://formsubmit.co/alvarojordaan@gmail.com" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="_subject" value="Nueva solicitud de valoración gratuita - Jordan Works">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="true">
+      <input type="hidden" name="_next" value="https://alvarojordanliberal-collab.github.io/JordanWorks/valoracion-gratuita/gracias.html">
+
+      <section class="section">
+        <h2 class="section-title">01 · Datos de contacto</h2>
+        <div class="grid">
+          <div class="field">
+            <label for="nombre">Nombre y apellidos *</label>
+            <input id="nombre" name="Nombre y apellidos" autocomplete="name" placeholder="Tu nombre completo" required>
+          </div>
+          <div class="field">
+            <label for="telefono">Teléfono *</label>
+            <input id="telefono" name="Teléfono" type="tel" autocomplete="tel" placeholder="Para poder contactarte" required>
+          </div>
+          <div class="field full">
+            <label for="email">Correo electrónico *</label>
+            <input id="email" name="Email" type="email" autocomplete="email" placeholder="tu@email.com" required>
+          </div>
+          <div class="field full">
+            <label for="localidad">Localidad donde está el vehículo *</label>
+            <input id="localidad" name="Localidad del vehículo" placeholder="Ej. Pamplona / Iruña" required>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">02 · Datos del vehículo</h2>
+        <div class="grid">
+          <div class="field">
+            <label for="marca">Marca *</label>
+            <input id="marca" name="Marca" placeholder="Ej. Mercedes-Benz" required>
+          </div>
+          <div class="field">
+            <label for="modelo">Modelo y versión *</label>
+            <input id="modelo" name="Modelo y versión" placeholder="Ej. Clase C 220d AMG Line" required>
+          </div>
+          <div class="field">
+            <label for="ano">Año de matriculación *</label>
+            <input id="ano" name="Año" type="number" min="1980" max="2100" placeholder="Ej. 2022" required>
+          </div>
+          <div class="field">
+            <label for="km">Kilómetros aproximados *</label>
+            <input id="km" name="Kilómetros" type="number" min="0" placeholder="Ej. 52000" required>
+          </div>
+          <div class="field">
+            <label for="combustible">Combustible *</label>
+            <select id="combustible" name="Combustible" required>
+              <option value="">Selecciona una opción</option>
+              <option>Gasolina</option><option>Diésel</option><option>Híbrido</option>
+              <option>Híbrido enchufable (PHEV)</option><option>Eléctrico</option><option>GLP / GNC</option><option>Otro</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="cambio">Transmisión *</label>
+            <select id="cambio" name="Transmisión" required>
+              <option value="">Selecciona una opción</option><option>Manual</option><option>Automática</option><option>No lo sé</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="origen">Origen del vehículo *</label>
+            <select id="origen" name="Origen" required>
+              <option value="">Selecciona una opción</option><option>Nacional</option><option>Importado</option><option>No lo sé</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="duenos">Número de propietarios</label>
+            <select id="duenos" name="Número de propietarios">
+              <option value="">Selecciona una opción</option><option>Un propietario</option><option>Dos propietarios</option><option>Tres o más</option><option>No lo sé</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label>Estado general *</label>
+            <div class="choice-row">
+              <label class="choice"><input type="radio" name="Estado general" value="Excelente" required><span>Excelente</span></label>
+              <label class="choice"><input type="radio" name="Estado general" value="Bueno"><span>Bueno</span></label>
+              <label class="choice"><input type="radio" name="Estado general" value="Con detalles"><span>Con detalles</span></label>
+            </div>
+          </div>
+          <div class="field full">
+            <label for="historial">Historial de mantenimiento *</label>
+            <select id="historial" name="Historial de mantenimiento" required>
+              <option value="">Selecciona una opción</option><option>Completo y acreditable</option><option>Parcial</option><option>Sin historial disponible</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="precio">Precio que tienes en mente (€) <span class="optional">Opcional</span></label>
+            <input id="precio" name="Precio esperado" type="number" min="0" placeholder="Ej. 32000">
+          </div>
+          <div class="field">
+            <label for="fecha">¿Cuándo te gustaría venderlo? *</label>
+            <select id="fecha" name="Plazo de venta" required>
+              <option value="">Selecciona una opción</option><option>Lo antes posible</option><option>En las próximas 2–4 semanas</option><option>En 1–3 meses</option><option>Solo quiero conocer su valor</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="descripcion">Equipamiento, extras, mantenimiento o detalles que debamos conocer <span class="optional">Opcional</span></label>
+            <textarea id="descripcion" name="Detalles adicionales" placeholder="Por ejemplo: acabado, extras, revisiones, ITV, neumáticos, desperfectos o motivo de venta."></textarea>
+          </div>
+          <div class="field full">
+            <label for="fotos">Fotos del vehículo <span class="optional">Opcional</span></label>
+            <input id="fotos" name="Fotos del vehículo" type="file" accept="image/*" multiple>
+            <p class="help">Si puedes, adjunta fotos del exterior, interior y cuadro de instrumentos. Si tu dispositivo no permite adjuntarlas, podrás enviarlas después por email o WhatsApp.</p>
+          </div>
+        </div>
+        <div class="form-footer">
+          <div class="checks">
+            <label class="checkline"><input type="checkbox" name="Consentimiento de contacto" value="Aceptado" required><span>Autorizo a Jordan Works a contactarme para responder a esta solicitud de valoración. *</span></label>
+            <label class="checkline"><input type="checkbox" name="Confirmación de gratuidad" value="Confirmado" required><span>Entiendo que la valoración inicial es gratuita y no me obliga a contratar ningún servicio. *</span></label>
+          </div>
+          <button class="submit" type="submit">Solicitar valoración gratuita →</button>
+          <p class="fineprint">Usaremos tus datos únicamente para gestionar esta solicitud y contactar contigo en relación con ella. No publiques información personal adicional en el campo de descripción.</p>
+        </div>
+      </section>
+    </form>
+  </main>
+  <script>document.getElementById("ano").max = String(new Date().getFullYear() + 1);</script>
+  <footer><strong>JORDAN WORKS</strong><br>Gestión profesional de venta de vehículos</footer>
+</body>
+</html>
