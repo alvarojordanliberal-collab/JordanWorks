@@ -73,7 +73,7 @@
   </header>
 
   <main>
-    <form action="https://formsubmit.co/alvarojordanliberal@gmail.com" method="POST" enctype="multipart/form-data">
+    <form id="valoracion-form" action="https://formsubmit.co/ajax/alvarojordanliberal@gmail.com" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="_subject" value="Nueva solicitud de valoración gratuita - Jordan Works">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_captcha" value="false">
@@ -186,12 +186,60 @@
             <label class="checkline"><input type="checkbox" name="Confirmación de gratuidad" value="Confirmado" required><span>Entiendo que la valoración inicial es gratuita y no me obliga a contratar ningún servicio. *</span></label>
           </div>
           <button class="submit" type="submit">Solicitar valoración gratuita →</button>
+          <p id="envio-error" role="alert" aria-live="polite" style="display:none;color:#b42318;font-weight:650;margin:12px 0 0"></p>
           <p class="fineprint">Usaremos tus datos únicamente para gestionar esta solicitud y contactar contigo en relación con ella. No publiques información personal adicional en el campo de descripción.</p>
         </div>
       </section>
     </form>
   </main>
-  <script>document.getElementById("ano").max = String(new Date().getFullYear() + 1);</script>
+  <script>
+    document.getElementById("ano").max = String(new Date().getFullYear() + 1);
+
+    const formulario = document.getElementById("valoracion-form");
+    const botonEnviar = formulario.querySelector('button[type="submit"]');
+    const mensajeError = document.getElementById("envio-error");
+
+    formulario.addEventListener("submit", async (evento) => {
+      evento.preventDefault();
+      if (!formulario.reportValidity()) return;
+
+      mensajeError.style.display = "none";
+      mensajeError.textContent = "";
+
+      const fotos = document.getElementById("fotos").files;
+      const tamanoTotal = Array.from(fotos).reduce((total, foto) => total + foto.size, 0);
+      if (tamanoTotal > 10 * 1024 * 1024) {
+        mensajeError.textContent = "Las fotografías superan los 10 MB en total. Selecciona archivos más pequeños o envía el formulario sin fotos.";
+        mensajeError.style.display = "block";
+        return;
+      }
+
+      botonEnviar.disabled = true;
+      botonEnviar.textContent = "Enviando solicitud…";
+      botonEnviar.style.opacity = "0.7";
+
+      try {
+        const respuesta = await fetch(formulario.action, {
+          method: "POST",
+          body: new FormData(formulario),
+          headers: { "Accept": "application/json" }
+        });
+        const datos = await respuesta.json();
+        if (!respuesta.ok || datos.success !== "true" && datos.success !== true) {
+          throw new Error(datos.message || "No se ha podido confirmar el envío.");
+        }
+        window.location.assign("./gracias.html");
+      } catch (error) {
+        console.error("Error al enviar valoración:", error);
+        mensajeError.textContent = "No hemos podido confirmar el envío. Inténtalo de nuevo o contacta con Jordan Works. Si ya lo habías enviado, consulta antes de repetirlo.";
+        mensajeError.style.display = "block";
+      } finally {
+        botonEnviar.disabled = false;
+        botonEnviar.textContent = "Solicitar valoración gratuita →";
+        botonEnviar.style.opacity = "";
+      }
+    });
+  </script>
   <footer><strong>JORDAN WORKS</strong><br>Gestión profesional de venta de vehículos</footer>
 </body>
 </html>
